@@ -3,6 +3,14 @@
     <ng-template pTemplate="start" [style]="{'align-items': 'center', 'justify-content': 'center'}">
         <p-image src="/assets/images/shared/logo.png" alt="logo.png" height="40"></p-image>
     </ng-template>
+    <ng-template pTemplate="end" [style]="{'align-items': 'center', 'justify-content': 'center'}">
+        <p-toggleButton 
+            [(ngModel)]="isDarkMode" 
+            onIcon="pi pi-moon"
+            offIcon="pi pi-sun"
+            onLabel="Light" 
+            offLabel="Dark" />
+    </ng-template>
 </p-megaMenu>
 <router-outlet></router-outlet>
 <footer></footer>

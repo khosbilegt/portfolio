@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
-import { MegaMenuModule } from 'primeng/megamenu'
+import { MegaMenuModule } from 'primeng/megamenu';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MegaMenuItem } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { ImageModule } from 'primeng/image';
+import { FormsModule } from '@angular/forms';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MegaMenuModule, CommonModule, ImageModule],
+  imports: [RouterOutlet, MegaMenuModule, CommonModule, ImageModule, ToggleButtonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   title = 'portfolio-blog';
   menuItems: MegaMenuItem[] = [];
+  private _isDarkMode: boolean = false
 
-  constructor(private primeConfig: PrimeNGConfig) {}
+  constructor(private primeConfig: PrimeNGConfig, private theme: ThemeService) {}
 
   ngOnInit(): void {
+    this.setDarkMode(this._isDarkMode)
     this.primeConfig.ripple = true;
     this.primeConfig.filterMatchModeOptions = {
       text: [
@@ -104,5 +109,26 @@ export class AppComponent implements OnInit {
           ],
         },
       ];
+  }
+
+  get isDarkMode(): boolean {
+    return this.getDarkMode();
+  }
+
+  set isDarkMode(value: boolean) {
+    this.setDarkMode(value);
+  }
+
+  getDarkMode(): boolean {
+    return this._isDarkMode;
+  }
+
+  setDarkMode(value: boolean) {
+    this._isDarkMode = value;
+    if(this._isDarkMode) {
+        this.theme.loadTheme('dark')
+    } else {
+        this.theme.loadTheme('light')
+    }
   }
 }
