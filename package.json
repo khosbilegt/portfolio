@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "prod": "ng serve --configuration production --host 5.161.118.247 --port 9000",
     "test": "ng test",
     "serve:ssr:portfolio-blog": "node dist/portfolio-blog/server/server.mjs"
   },
