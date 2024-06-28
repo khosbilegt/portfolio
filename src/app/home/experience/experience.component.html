@@ -1,0 +1,45 @@
+<div class="w-full px-5 flex justify-center items-center">
+    <div class="md:w-1/2 w-full">
+        <p-stepper [linear]="true">
+            @for (step of steps; track $index) {
+            <p-stepperPanel header='{{ step.header }}'>
+                <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+                    let-index="index">
+                    <p-scrollPanel styleClass="w-full h-[275px]">
+                        <div class="flex gap-2 p-3">
+                            <div class="flex-none mr-5">
+                                <p-image imageClass="h-[250px]" src="{{ step.icon }}" />
+                            </div>
+                            <div class="flex flex-col justify-center gap-2">
+                                <p class="text-3xl">{{ step.position }}</p>
+                                <p class="text-xl">{{ step.header }}</p>
+                                <p class="text-lg text-gray-500">{{ step.start.month }} {{ step.start.year }} -
+                                    {{step.end.month}} {{step.end.year}} </p>
+                                <ul class="list-disc">
+                                    @for (paragraph of step.content; track para_index) {
+                                    <li class="text-lg mb-3">{{ paragraph }}</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </p-scrollPanel>
+
+                    <div class="flex pt-4 justify-between w-full">
+                        @if (index > 0) {
+                        <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                        } @else {
+                        <div></div>
+                        }
+                        @if (index
+                        < steps.length - 1) { <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                            (onClick)="nextCallback.emit()" />
+                        } @else {
+                        <div></div>
+                        }
+                    </div>
+                </ng-template>
+            </p-stepperPanel>
+            }
+        </p-stepper>
+    </div>
+</div>
