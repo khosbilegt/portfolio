@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div class="w-full flex flex-col justify-items-center items-center mt-[100px]">
+    <div class="w-1/4 flex flex-col justify-items-center items-center gap-4 text-center">
+        <p-avatar image="/assets/images/home/profile.jpg" styleClass="mr-2" size="xlarge" shape="circle" />
+        <p class="text-xl">{{ intro_name }}</p>
+        <p class="text-5xl">{{ intro_role }}</p>
+        <p class="text-xl">{{ current_employment.role + " "}}<a class="underline text-blue-400" href="{{ current_employment.url }}">{{ "@" + current_employment.name}}</a></p>
+        <p class="text-lg">{{ intro_work }}</p>
+        <p-button type="button" class="px-3 py-5 bg-blue-600 text-white rounded-lg" label="Contact"/>
+    </div>
+</div>
