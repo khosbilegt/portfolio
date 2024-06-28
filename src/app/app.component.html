@@ -1,7 +1,6 @@
 <header>
-    <p-menubar [model]="menuItems"
-        [style]="{ display: 'flex', 'justify-content': 'space-between', 'align-items': 'center'}">
-        <ng-template pTemplate="end" [style]="{'align-items': 'center', 'justify-content': 'center'}">
+    <p-menubar [model]="menuItems" class="w-full">
+        <ng-template pTemplate="end" class="flex items-center justify-center h-full">
             <p-toggleButton [(ngModel)]="isDarkMode" [offIcon]="Icons['DARK_MODE']" [onIcon]="Icons['LIGHT_MODE']"
                 onLabel="Light" offLabel="Dark" />
         </ng-template>
