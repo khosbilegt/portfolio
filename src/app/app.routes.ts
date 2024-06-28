@@ -4,16 +4,17 @@ import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-    {
-        path: "projects",
-        component: ProjectComponent
-    },
-    {
-        path: "blog",
-        component: BlogComponent
-    },
-    {
-        path: "**",
-        component: HomeComponent
-    },
+  {
+    path: 'projects',
+    component: ProjectComponent,
+  },
+  {
+    path: 'blog',
+    component: BlogComponent,
+  },
+  {
+    path: '**',
+    component: HomeComponent,
+    title: 'Khosbilegt.B - Software Developer',
+  },
 ];

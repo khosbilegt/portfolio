@@ -1,14 +1,11 @@
 <header>
-    <p-megaMenu [model]="menuItems"
+    <p-menubar [model]="menuItems"
         [style]="{ display: 'flex', 'justify-content': 'space-between', 'align-items': 'center'}">
-        <ng-template pTemplate="start">
-            <p-image src="/assets/images/shared/logo.png" alt="logo.png" height="40"></p-image>
-        </ng-template>
         <ng-template pTemplate="end" [style]="{'align-items': 'center', 'justify-content': 'center'}">
-            <p-toggleButton [(ngModel)]="isDarkMode" [offIcon]="Icons.DARK_MODE" [onIcon]="Icons.LIGHT_MODE"
+            <p-toggleButton [(ngModel)]="isDarkMode" [offIcon]="Icons['DARK_MODE']" [onIcon]="Icons['LIGHT_MODE']"
                 onLabel="Light" offLabel="Dark" />
         </ng-template>
-    </p-megaMenu>
+    </p-menubar>
 </header>
 <router-outlet></router-outlet>
 <footer></footer>
