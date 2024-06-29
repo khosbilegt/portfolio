@@ -38,6 +38,9 @@ export class AppComponent implements OnInit {
     WORK: PrimeIcons.BUILDING,
     PROJECTS: PrimeIcons.FOLDER,
     BLOGS: PrimeIcons.PENCIL,
+    LINKEDIN: PrimeIcons.LINKEDIN,
+    GITHUB: PrimeIcons.GITHUB,
+    FACEBOOK: PrimeIcons.FACEBOOK,
   };
   isMenuHidden: boolean = false;
   menuItems: MenuItem[] = [
@@ -57,6 +60,17 @@ export class AppComponent implements OnInit {
     {
       label: 'Blogs',
       icon: this.Icons['BLOGS'],
+    },
+  ];
+  footerLinks: any[] = [
+    { icon: this.Icons['GITHUB'], url: 'https://github.com/khosbilegt/' },
+    {
+      icon: this.Icons['LINKEDIN'],
+      url: 'https://www.linkedin.com/in/khosbilegt-bilegsaikhan-82929424b/',
+    },
+    {
+      icon: this.Icons['FACEBOOK'],
+      url: 'https://www.facebook.com/khosbilegt.bilegsaikhan.5/',
     },
   ];
   isSidebarVisible: boolean = false;
