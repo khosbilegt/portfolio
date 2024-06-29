@@ -1,21 +1,20 @@
-<div class="w-[100vw] px-5 flex justify-center items-center">
-    <div class="lg:w-1/2 w-full px-5">
-        <p-stepper [linear]="true">
+<div class="w-screen flex justify-center items-center">
+    <div class="lg:w-1/2 w-3/4">
+        <p-stepper>
             @for (step of steps; track $index) {
             <p-stepperPanel header='{{ step.header }}'>
                 <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
                     let-index="index">
-                    <!-- <p-scrollPanel styleClass="w-full h-[400px]"> -->
                         <div class="flex lg:flex-row flex-col gap-2 p-3 items-center">
                             <div class="flex-none mr-5">
                                 <p-image imageClass="md:h-[250px] h-[100px]" src="{{ step.icon }}" />
                             </div>
-                            <div class="flex flex-col justify-center gap-2  lg:items-start items-center">
+                            <div class="flex flex-col justify-center gap-2  lg:items-start items-center text-center">
                                 <p class="text-3xl">{{ step.position }}</p>
                                 <p class="text-xl">{{ step.header }}</p>
                                 <p class="text-lg text-gray-500">{{ step.start.month }} {{ step.start.year }} -
                                     {{step.end.month}} {{step.end.year}} </p>
-                                <div class="flex gap-2">
+                                <div class="flex gap-2 flex-wrap">
                                     @for (technology of step.technologies; track $index) {
                                     <a href="{{ technology.url }}">
                                         <p-tag>{{ technology.name }}</p-tag>
@@ -28,14 +27,12 @@
                                     }
                                 </ul>
                                 <div class="w-full flex justify-end">
-                                    <p-button
-                                        styleClass="w-[100px] py-3 px-2 text-center text-white rounded-lg bg-blue-600">
+                                    <p-button styleClass="w-[100px] p-2 text-center text-white rounded-lg bg-blue-600">
                                         Read more
                                     </p-button>
                                 </div>
                             </div>
                         </div>
-                    <!-- </p-scrollPanel> -->
 
                     <div class="flex pt-4 justify-between w-full">
                         @if (index > 0) {
