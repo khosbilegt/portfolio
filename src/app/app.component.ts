@@ -13,6 +13,8 @@ import { ImageModule } from 'primeng/image';
 import { PrimeIcons } from 'primeng/api';
 import { ThemeService } from './services/theme.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { HomeComponent } from './home/home.component';
+import { ScrollService } from './services/scroll-service.service';
 
 @Component({
   selector: 'app-root',
@@ -52,6 +54,9 @@ export class AppComponent implements OnInit {
     {
       label: 'Experience',
       icon: this.Icons['WORK'],
+      command: () => {
+        this.scroller.scrollToElement('experience');
+      },
     },
     {
       label: 'Projects',
@@ -80,7 +85,8 @@ export class AppComponent implements OnInit {
     private primeConfig: PrimeNGConfig,
     private theme: ThemeService,
     private localStorage: LocalStorageService,
-    private responsive: BreakpointObserver
+    private responsive: BreakpointObserver,
+    private scroller: ScrollService
   ) {}
 
   ngOnInit(): void {

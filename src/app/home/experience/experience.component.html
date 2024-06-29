@@ -1,6 +1,6 @@
 <div class="w-screen flex justify-center items-center">
     <div class="lg:w-1/2 w-3/4">
-        <p-stepper>
+        <p-stepper orientation="vertical">
             @for (step of steps; track $index) {
             <p-stepperPanel header='{{ step.header }}'>
                 <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
@@ -9,7 +9,7 @@
                             <div class="flex-none mr-5">
                                 <p-image imageClass="md:h-[250px] h-[100px]" src="{{ step.icon }}" />
                             </div>
-                            <div class="flex flex-col justify-center gap-2  lg:items-start items-center lg:text-start text-center">
+                            <div class="flex flex-col justify-center gap-2  lg:items-start items-center lg:text-left text-center">
                                 <p class="text-3xl">{{ step.position }}</p>
                                 <p class="text-xl">{{ step.header }}</p>
                                 <p class="text-lg text-gray-500">{{ step.start.month }} {{ step.start.year }} -
@@ -34,14 +34,14 @@
                             </div>
                         </div>
 
-                    <div class="flex pt-4 justify-between w-full">
+                    <div class="flex pt-4 justify-start w-full gap-2 ">
                         @if (index > 0) {
-                        <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                        <p-button class="bg-gray-400 text-white rounded-lg p-1 font-light" label="Back" (onClick)="prevCallback.emit()" />
                         } @else {
                         <div></div>
                         }
                         @if (index
-                        < steps.length - 1) { <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                        < steps.length - 1) { <p-button label="Next" iconPos="right" class="bg-blue-600 text-white rounded-lg p-1 font-light"
                             (onClick)="nextCallback.emit()" />
                         } @else {
                         <div></div>

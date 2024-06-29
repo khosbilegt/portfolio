@@ -76,7 +76,7 @@ export class ExperienceComponent {
         month: 'November',
       },
       content: [
-        'During my time the Computer Graphics Library, I had the opportunity to intern in Digital Solutions, a company founded by the alumni of the laboratory which extended to a period of roughly 6 months. I worked full-time during the summer and part-time alongside my courses.',
+        'During my time the Computer Graphics Library, I had the opportunity to intern at Digital Solutions, a company founded by the alumni of the laboratory which extended to a period of roughly 6 months. I worked full-time during the summer and part-time alongside my courses.',
         'My first task was implementing a Linked List from scratch for a sorting algorithm that stores the info of several instances of the same 3D mesh to optimize rendering, allowing me to build a solid foundation of data structures.',
         'I was responsible for implementing a Media Streaming tool that is synchronized across all instances of a multiplayer game with over 5,000 users.',
       ],
