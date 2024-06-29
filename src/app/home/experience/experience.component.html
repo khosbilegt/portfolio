@@ -1,28 +1,41 @@
-<div class="w-full px-5 flex justify-center items-center">
-    <div class="md:w-1/2 w-full">
+<div class="w-[100vw] px-5 flex justify-center items-center">
+    <div class="lg:w-1/2 w-full px-5">
         <p-stepper [linear]="true">
             @for (step of steps; track $index) {
             <p-stepperPanel header='{{ step.header }}'>
                 <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
                     let-index="index">
-                    <p-scrollPanel styleClass="w-full h-[275px]">
-                        <div class="flex gap-2 p-3">
+                    <!-- <p-scrollPanel styleClass="w-full h-[400px]"> -->
+                        <div class="flex lg:flex-row flex-col gap-2 p-3 items-center">
                             <div class="flex-none mr-5">
-                                <p-image imageClass="h-[250px]" src="{{ step.icon }}" />
+                                <p-image imageClass="md:h-[250px] h-[100px]" src="{{ step.icon }}" />
                             </div>
-                            <div class="flex flex-col justify-center gap-2">
+                            <div class="flex flex-col justify-center gap-2  lg:items-start items-center">
                                 <p class="text-3xl">{{ step.position }}</p>
                                 <p class="text-xl">{{ step.header }}</p>
                                 <p class="text-lg text-gray-500">{{ step.start.month }} {{ step.start.year }} -
                                     {{step.end.month}} {{step.end.year}} </p>
+                                <div class="flex gap-2">
+                                    @for (technology of step.technologies; track $index) {
+                                    <a href="{{ technology.url }}">
+                                        <p-tag>{{ technology.name }}</p-tag>
+                                    </a>
+                                    }
+                                </div>
                                 <ul class="list-disc">
-                                    @for (paragraph of step.content; track para_index) {
+                                    @for (paragraph of step.content; track $index) {
                                     <li class="text-lg mb-3">{{ paragraph }}</li>
                                     }
                                 </ul>
+                                <div class="w-full flex justify-end">
+                                    <p-button
+                                        styleClass="w-[100px] py-3 px-2 text-center text-white rounded-lg bg-blue-600">
+                                        Read more
+                                    </p-button>
+                                </div>
                             </div>
                         </div>
-                    </p-scrollPanel>
+                    <!-- </p-scrollPanel> -->
 
                     <div class="flex pt-4 justify-between w-full">
                         @if (index > 0) {
