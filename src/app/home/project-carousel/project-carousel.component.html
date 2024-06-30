@@ -1,30 +1,20 @@
 <div class="w-full flex justify-center">
     <div class="lg:w-1/2 w-3/4">
-        <h1 class="text-5xl p-3">Projects</h1>
+        <h1 class="p-3"><span class="text-5xl">Projects</span><span class="ml-2"><a href="/blogs" class="text-blue-400 text-underline">See all</a></span></h1>
         <p-carousel [value]="projects" [numVisible]="1" [numScroll]="1" [showIndicators]="true" [circular]="true">
             <ng-template let-project pTemplate="item">
-                <div class="border-1 surface-border border-round m-2 p-3">
-                    <div class="mb-3">
-                        <div class="relative mx-auto">
-                            <p-image src="{{ project.thumbnail }}"
-                                [alt]="project.title" class="w-full border-round" />
-                            <!-- <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"
-                                class="absolute" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" /> -->
+                <a class="rounded-lg project-carousel-link" href="/blogs/{{ project.title }}">
+                    <div class="flex flex-col items-center gap-2 duration-200">
+                            <p-image src="{{ project.thumbnail }}" [alt]="project.title" styleClass="flex justify-center"/>
+                            <div class="flex gap-2 mt-2">
+                                @for (tag of project.tags; track $index) {
+                                <p-tag [value]="tag" />
+                                }
+                            </div>
+                            <h1 class="text-3xl">{{ project.title }}</h1>
+                            <p class="text-md">{{ project.blurb }}</p>
                         </div>
-                    </div>
-                    <div class="mb-3 font-medium">
-                        {{ project.title }}
-                    </div>
-                    <div class="flex justify-content-between align-items-center">
-                        <div class="mt-0 font-semibold text-xl">
-                            {{ '$' + project.title }}
-                        </div>
-                        <span>
-                            <!-- <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-                            <p-button icon="pi pi-shopping-cart" styleClass="ml-2" /> -->
-                        </span>
-                    </div>
-                </div>
+                    </a>
             </ng-template>
         </p-carousel>
     </div>

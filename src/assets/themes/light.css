@@ -1,1 +1,10 @@
 @import 'primeng/resources/themes/md-light-indigo/theme.css';
+
+.project-carousel-link:hover {
+    background-color: #b6b6b6;
+}
+
+.project-carousel-link:hover img {
+    opacity: 0.6;
+    transition: 200ms;
+}
