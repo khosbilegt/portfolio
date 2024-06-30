@@ -61,6 +61,9 @@ export class AppComponent implements OnInit {
     {
       label: 'Projects',
       icon: this.Icons['PROJECTS'],
+      command: () => {
+        this.scroller.scrollToElement('projects');
+      },
     },
     {
       label: 'Blogs',
