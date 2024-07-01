@@ -8,3 +8,7 @@
     opacity: 0.4;
     transition: 200ms;
 }
+
+.app-blog .blog-search input {
+    color: white;
+}

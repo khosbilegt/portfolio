@@ -8,3 +8,9 @@
     opacity: 0.6;
     transition: 200ms;
 }
+
+input:focus,
+input:focus-within,
+input:focus-visible {
+    outline: none;
+}

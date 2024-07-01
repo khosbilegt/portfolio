@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ImageModule } from 'primeng/image';
 import { TagModule } from 'primeng/tag';
@@ -11,12 +11,12 @@ import { TagModule } from 'primeng/tag';
   templateUrl: './project-carousel.component.html',
   styleUrl: './project-carousel.component.css',
 })
-export class ProjectCarouselComponent implements AfterViewInit {
+export class ProjectCarouselComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   projects: any[] = [];
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.http
       .get<any>('http://127.0.0.1:8080/api/blog?type=project')
       .subscribe((response) => {

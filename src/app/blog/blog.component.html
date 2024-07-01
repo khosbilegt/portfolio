@@ -1,1 +1,23 @@
-<p>blog works!</p>
+<div class="max-w-md mx-auto">
+    <div class="relative mt-5">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <span class="{{ searchIcon }}"></span>
+        </div>
+        <input pInputText type="search" id="default-search" [(ngModel)]="currentText" (keyup.enter)="onEnter()"
+            class="blog-search block w-full p-4 px-6 ps-10 text-sm border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Quarkus, Redis, NodeJS" required />
+        <div class="h-full flex align-center bg-red-200">
+            <p-button type="submit"
+                styleClass="text-white absolute end-2.5 bottom-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-4 py-2">
+                Search
+            </p-button>
+        </div>
+    </div>
+    <div class="flex gap-2 mt-3">
+        @for (item of allTags; track $index) {
+        <p-button styleClass="rounded-xl" (onClick)="selectTag(item[0])" >
+            <p-chip label="{{ item[0] }}" removable="{{ item[1] }}"/>
+        </p-button>
+        }
+    </div>
+</div>
