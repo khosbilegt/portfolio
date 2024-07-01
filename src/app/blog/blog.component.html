@@ -7,7 +7,7 @@
             class="blog-search block w-full p-4 px-6 ps-10 text-sm border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="Quarkus, Redis, NodeJS" required />
         <div class="h-full flex align-center bg-red-200">
-            <p-button type="submit"
+            <p-button type="submit" (onClick)="onEnter()"
                 styleClass="text-white absolute end-2.5 bottom-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-4 py-2">
                 Search
             </p-button>
@@ -15,9 +15,29 @@
     </div>
     <div class="flex gap-2 mt-3">
         @for (item of allTags; track $index) {
-        <p-button styleClass="rounded-xl" (onClick)="selectTag(item[0])" >
-            <p-chip label="{{ item[0] }}" removable="{{ item[1] }}"/>
+        <p-button styleClass="rounded-xl" (onClick)="selectTag(item[0])">
+            <p-chip label="{{ item[0] }}" removable="{{ item[1] }}" />
         </p-button>
         }
+    </div>
+    <div class="w-full flex justify-center">
+        <p-dataView #dv [value]="visibleBlogs" layout="grid">
+            <ng-template pTemplate="grid" let-products>
+                <div class="grid grid-nogutter">
+                    <div class="col-12 sm:col-6 md:col-4 xl:col-6 p-2" *ngFor="let item of products; let first = first">
+                        <div class="flex flex-col items-center gap-2 duration-200">
+                            <p-image src="{{ item.thumbnail }}" [alt]="item.title" styleClass="flex justify-center" />
+                            <div class="flex gap-2 mt-2">
+                                @for (tag of item.tags; track $index) {
+                                <p-tag [value]="tag" />
+                                }
+                            </div>
+                            <h1 class="text-3xl">{{ item.title }}</h1>
+                            <p class="text-md">{{ item.blurb }}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
     </div>
 </div>

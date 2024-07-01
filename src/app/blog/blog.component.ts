@@ -5,6 +5,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PrimeIcons } from 'primeng/api';
 import { ChipModule } from 'primeng/chip';
+import { ImageModule } from 'primeng/image';
+import { TagModule } from 'primeng/tag';
+import { DataViewModule } from 'primeng/dataview';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,6 +19,9 @@ import { CommonModule } from '@angular/common';
     ButtonModule,
     ChipModule,
     CommonModule,
+    ImageModule,
+    TagModule,
+    DataViewModule,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css',
@@ -27,12 +33,38 @@ export class BlogComponent implements OnInit {
   cancelIcon: PrimeIcons = PrimeIcons.TIMES;
 
   currentText: string = '';
+  allBlogs: any[] = [];
+  visibleBlogs: any[] = [];
   allTags: Map<string, boolean> = new Map();
 
-  onEnter() {}
+  onEnter() {
+    this.searchBlog();
+  }
+
+  searchBlog() {
+    this.http
+      .get<any>('http://127.0.0.1:8080/api/blog?title=' + this.currentText)
+      .subscribe((response) => {
+        this.allBlogs = response.data;
+        this.handleVisibleBlogs();
+      });
+  }
+
+  handleVisibleBlogs() {
+    const selectedTags = Array.from(this.allTags.entries())
+      .filter(([, isSelected]) => isSelected)
+      .map(([tag]) => tag);
+
+    const tempVisibleBlogs = this.allBlogs.filter((blog) => {
+      return selectedTags.every((tag) => blog.tags.includes(tag));
+    });
+
+    this.visibleBlogs = tempVisibleBlogs;
+  }
 
   selectTag(tag: string) {
     this.allTags.set(tag, !this.allTags.get(tag));
+    this.handleVisibleBlogs();
   }
 
   ngOnInit(): void {
@@ -43,5 +75,6 @@ export class BlogComponent implements OnInit {
           this.allTags.set(response.tags[i], false);
         }
       });
+    this.onEnter();
   }
 }
