@@ -21,7 +21,6 @@ export class ProjectCarouselComponent implements AfterViewInit {
       .get<any>('http://127.0.0.1:8080/api/blog?type=project')
       .subscribe((response) => {
         this.projects = response.data;
-        console.log(this.projects);
       });
   }
 }

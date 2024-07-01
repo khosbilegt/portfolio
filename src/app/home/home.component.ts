@@ -4,6 +4,8 @@ import { HeroComponent } from './hero/hero.component';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { ScrollService } from '../services/scroll-service.service';
 import { ProjectCarouselComponent } from './project-carousel/project-carousel.component';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-home',

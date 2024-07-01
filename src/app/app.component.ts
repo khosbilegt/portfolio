@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { CommonModule, Location } from '@angular/common';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+  UrlTree,
+} from '@angular/router';
 import { Breakpoints } from '@angular/cdk/layout';
 import { FormsModule } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -13,8 +19,8 @@ import { ImageModule } from 'primeng/image';
 import { PrimeIcons } from 'primeng/api';
 import { ThemeService } from './services/theme.service';
 import { LocalStorageService } from './services/local-storage.service';
-import { HomeComponent } from './home/home.component';
 import { ScrollService } from './services/scroll-service.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +38,7 @@ import { ScrollService } from './services/scroll-service.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   Icons: Record<string, string> = {
     DARK_MODE: PrimeIcons.MOON,
     LIGHT_MODE: PrimeIcons.SUN,
@@ -55,19 +61,20 @@ export class AppComponent implements OnInit {
       label: 'Experience',
       icon: this.Icons['WORK'],
       command: () => {
-        this.scroller.scrollToElement('experience');
+        this.router.navigateByUrl('?scroll=experience');
       },
     },
     {
       label: 'Projects',
       icon: this.Icons['PROJECTS'],
       command: () => {
-        this.scroller.scrollToElement('projects');
+        this.router.navigateByUrl('?scroll=projects');
       },
     },
     {
       label: 'Blogs',
       icon: this.Icons['BLOGS'],
+      routerLink: '/blogs',
     },
   ];
   footerLinks: any[] = [
@@ -89,8 +96,24 @@ export class AppComponent implements OnInit {
     private theme: ThemeService,
     private localStorage: LocalStorageService,
     private responsive: BreakpointObserver,
-    private scroller: ScrollService
+    private scroller: ScrollService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
+
+  handleScrollToElement(element: string) {
+    this.scroller.scrollToElement(element);
+  }
+
+  ngAfterViewInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        var currentUrl = this.router.url;
+        const urlTree: UrlTree = this.router.parseUrl(currentUrl);
+        this.handleScrollToElement(urlTree['queryParams']['scroll']);
+      });
+  }
 
   ngOnInit(): void {
     var isDarkMode = false;
