@@ -42,9 +42,10 @@
                                     {{ item.blurb }}
                                 </p>
                                 <ng-template pTemplate="footer">
-                                    <div class="flex gap-3 mt-1">
-                                        <p-button label="Read more" class="w-full"
-                                            styleClass="w-full bg-blue-600 hover:bg-blue-400 text-white py-1" />
+                                    <div class="flex gap-3 justify-end">
+                                        <a pButton href="/blogs/{{ item.title }}" class="bg-blue-600 hover:bg-blue-400 text-white text-center text-sm py-2">
+                                            Read more
+                                        </a>
                                     </div>
                                 </ng-template>
                             </p-card>
