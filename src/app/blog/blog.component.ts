@@ -8,7 +8,9 @@ import { ChipModule } from 'primeng/chip';
 import { ImageModule } from 'primeng/image';
 import { TagModule } from 'primeng/tag';
 import { DataViewModule } from 'primeng/dataview';
+import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @Component({
   selector: 'app-blog',
@@ -21,7 +23,9 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     ImageModule,
     TagModule,
+    CardModule,
     DataViewModule,
+    AnimateOnScrollModule,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css',
