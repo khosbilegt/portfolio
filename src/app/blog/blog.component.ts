@@ -47,7 +47,7 @@ export class BlogComponent implements OnInit {
 
   searchBlog() {
     this.http
-      .get<any>('http://127.0.0.1:8080/api/blog?title=' + this.currentText)
+      .get<any>('https://khosbilegt.dev/api/blog?title=' + this.currentText)
       .subscribe((response) => {
         this.allBlogs = response.data;
         this.handleVisibleBlogs();
@@ -73,7 +73,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('http://127.0.0.1:8080/api/blog/tag')
+      .get<any>('https://khosbilegt.dev/api/blog/tag')
       .subscribe((response) => {
         for (var i = 0; i < response?.tags?.length; i++) {
           this.allTags.set(response.tags[i], false);

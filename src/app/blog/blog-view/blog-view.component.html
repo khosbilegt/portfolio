@@ -1,5 +1,21 @@
 <div class="w-full flex justify-center">
     <div class="w-3/4 p-5 mt-5 main-area">
-        <p class="text-center text-5xl"> {{ blog.title }} </p>
+        <p class="text-center text-sm text-gray-500">Published: July 3, 2024 </p>
+        <p class="text-center text-5xl mt-2"> {{ blog.title }} </p>
+        <p class="text-center text-sm text-gray-500 mt-2"> {{ blog.blurb }} </p>
+        <p-image src="{{ blog.thumbnail }}" styleClass="w-full flex justify-center mt-3" preview="true" />
+        <div class="flex flex-col gap-4 mt-4">
+            @for (item of blog?.body; track $index) {
+                @if (item?.type == 'text') {
+                    <p class="text-{{ item?.font?.size }} font-{{ item?.font?.weight }} ">{{item.content}}</p>
+                } @else if (item?.type == 'image') {
+                    <p-image src="{{ item?.content }}" preview="true" />
+                } @else if (item?.type == 'code') {
+                    <p-card>
+                        <pre>{{ item?.content }}</pre>
+                    </p-card>
+                }
+            }
+        </div>
     </div>
 </div>

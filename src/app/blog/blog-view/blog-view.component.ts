@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ImageModule } from 'primeng/image';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-blog-view',
   standalone: true,
-  imports: [],
+  imports: [ImageModule, CardModule],
   templateUrl: './blog-view.component.html',
   styleUrl: './blog-view.component.css',
 })
@@ -24,7 +26,7 @@ export class BlogViewComponent implements OnInit {
 
   searchBlog() {
     this.http
-      .get<any>('http://127.0.0.1:8080/api/blog/' + this.blogTitle)
+      .get<any>('https://khosbilegt.dev/api/blog/' + this.blogTitle)
       .subscribe((response) => {
         this.blog = response;
       });

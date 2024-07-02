@@ -18,7 +18,7 @@ export class ProjectCarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('http://127.0.0.1:8080/api/blog?type=project')
+      .get<any>('https://khosbilegt.dev/api/blog?type=project')
       .subscribe((response) => {
         this.projects = response.data;
       });
