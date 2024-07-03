@@ -11,6 +11,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-blog',
@@ -25,6 +26,7 @@ import { AnimateOnScrollModule } from 'primeng/animateonscroll';
     TagModule,
     CardModule,
     DataViewModule,
+    SkeletonModule,
     AnimateOnScrollModule,
   ],
   templateUrl: './blog.component.html',
@@ -36,12 +38,14 @@ export class BlogComponent implements OnInit {
   searchIcon: PrimeIcons = PrimeIcons.SEARCH;
   cancelIcon: PrimeIcons = PrimeIcons.TIMES;
 
+  isLoading: boolean = true;
   currentText: string = '';
   allBlogs: any[] = [];
   visibleBlogs: any[] = [];
   allTags: Map<string, boolean> = new Map();
 
   onEnter() {
+    this.isLoading = true;
     this.searchBlog();
   }
 
@@ -51,6 +55,7 @@ export class BlogComponent implements OnInit {
       .subscribe((response) => {
         this.allBlogs = response.data;
         this.handleVisibleBlogs();
+        this.isLoading = false;
       });
   }
 

@@ -22,36 +22,45 @@
     </div>
 </div>
 <div class="w-full px-5 flex justify-center">
-    @if (visibleBlogs.length == 0) {
-    <div class="flex flex-col text-center gap-2">
+    @if (visibleBlogs.length == 0 && !isLoading) {
+    <div class="flex flex-col text-center gap-2 mt-5">
+        <div class="h-10rem"></div>
         <h1 class="text-5xl">404</h1>
         <p class="text-xl">There are no blogs with the specified parameters.</p>
+        <div class="h-15rem"></div>
     </div>
     } @else {
-    <div class="w-full mt-3">
+    <div class="w-full mt-5">
         <p-dataView #dv [value]="visibleBlogs" layout="grid" [paginator]="true" [rows]="12" styleClass="rounded-xl">
             <ng-template pTemplate="grid" let-products>
                 <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full p-5">
-                    <div class="p-2 w-full" *ngFor="let item of products; let first = first">
-                        <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutleft" class="animation-duration-1000 animation-ease-in-out">
-                            <p-card header="{{ item.title }}">
-                                <ng-template pTemplate="header">
-                                    <img alt="Card" src="{{ item.thumbnail }}" />
-                                </ng-template>
-                                <p>
-                                    {{ item.blurb }}
-                                </p>
-                                <ng-template pTemplate="footer">
-                                    <div class="flex gap-3 justify-end">
-                                        <a pButton href="/blogs/{{ item.title }}" class="bg-blue-600 hover:bg-blue-400 text-white text-center text-sm py-2">
-                                            Read more
-                                        </a>
-                                    </div>
-                                </ng-template>
-                            </p-card>
-                        </div>
-
+                    @if (isLoading) {
+                    <div *ngFor="let item of [].constructor(12); let i = index">
+                        <p-skeleton height="10rem"/>
                     </div>
+                    } @else {
+                        <div class="p-2 w-full" *ngFor="let item of products; let first = first">
+                            <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutleft"
+                                class="animation-duration-1000 animation-ease-in-out">
+                                <p-card header="{{ item.title }}">
+                                    <ng-template pTemplate="header">
+                                        <img alt="Card" src="{{ item.thumbnail }}" />
+                                    </ng-template>
+                                    <p>
+                                        {{ item.blurb }}
+                                    </p>
+                                    <ng-template pTemplate="footer">
+                                        <div class="flex gap-3 justify-end">
+                                            <a pButton href="/blogs/{{ item.title }}"
+                                                class="bg-blue-600 hover:bg-blue-400 text-white text-center text-sm py-2">
+                                                Read more
+                                            </a>
+                                        </div>
+                                    </ng-template>
+                                </p-card>
+                            </div>
+                        </div>
+                    }
                 </div>
             </ng-template>
         </p-dataView>
