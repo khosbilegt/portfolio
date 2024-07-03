@@ -1,5 +1,5 @@
-<div class="max-w-md mx-auto">
-    <div class="relative mt-5">
+<div class="md:max-w-md w-3/4 mx-auto">
+    <div class="relative mt-5 ">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <span class="{{ searchIcon }}"></span>
         </div>
@@ -13,7 +13,7 @@
             </p-button>
         </div>
     </div>
-    <div class="flex gap-2 mt-3">
+    <div class="flex flex-wrap gap-2 mt-3">
         @for (item of allTags; track $index) {
         <p-button styleClass="rounded-xl" (onClick)="selectTag(item[0])">
             <p-chip label="{{ item[0] }}" removable="{{ item[1] }}" />
@@ -21,7 +21,7 @@
         }
     </div>
 </div>
-<div class="w-full px-5 flex justify-center">
+<div class="w-full md:px-5 px-3 flex justify-center">
     @if (visibleBlogs.length == 0 && !isLoading) {
     <div class="flex flex-col text-center gap-2 mt-5">
         <div class="h-10rem"></div>
@@ -30,7 +30,7 @@
         <div class="h-15rem"></div>
     </div>
     } @else {
-    <div class="w-full mt-5">
+    <div class="w-full">
         <p-dataView #dv [value]="visibleBlogs" layout="grid" [paginator]="true" [rows]="12" styleClass="rounded-xl">
             <ng-template pTemplate="grid" let-products>
                 <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full p-5">
