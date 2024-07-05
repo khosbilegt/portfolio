@@ -7,7 +7,10 @@ import { ChipsModule } from 'primeng/chips';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { FieldsetModule } from 'primeng/fieldset';
 import { PrimeIcons } from 'primeng/api';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @Component({
   selector: 'app-blog-editor',
@@ -21,6 +24,9 @@ import { PrimeIcons } from 'primeng/api';
     InputTextareaModule,
     ButtonModule,
     DropdownModule,
+    FieldsetModule,
+    AnimateOnScrollModule,
+    FloatLabelModule,
   ],
   templateUrl: './blog-editor.component.html',
   styleUrl: './blog-editor.component.css',
