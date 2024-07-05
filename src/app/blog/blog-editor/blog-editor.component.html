@@ -1,0 +1,60 @@
+<div class="w-full flex flex-wrap justify-center gap-5 px-5 py-5">
+    <div class="flex justify-center flex-col lg:w-1/2 w-full flex-wrap gap-5">
+        <h1 class="text-3xl">Edit</h1>
+        <div class="flex items-center gap-2">
+            <label for="title">Title</label>
+            <input pInputText id="title" aria-describedby="title-help" class="px-2 py-3" placeholder="Blog.1" />
+        </div>
+        <div class="flex items-center gap-2">
+            <label for="title">Tags</label>
+            <p-chips [(ngModel)]="values" inputStyleClass="py-1 px-2" placeholder="Vulkan, NUM, Grafana..." />
+        </div>
+        <div class="flex items-center gap-2">
+            <label for="title">Thumbnail</label>
+            <p-fileUpload mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]"
+                styleClass="bg-blue-600 text-white hover:bg-blue-700"
+                url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" />
+        </div>
+        <div class="flex items-center gap-2">
+            <label for="title">Blurb</label>
+            <textarea rows="5" cols="30" pInputTextarea>
+            </textarea>
+        </div>
+        <div class="flex gap-2">
+            <p>Content: </p>
+            <div class="flex flex-col gap-3">
+                @if (contents.length > 0) {
+                @for (item of contents; track $index) {
+                <div class="flex gap-2">
+                    <label>{{ $index + 1 }}.</label>
+                    <p-dropdown [options]="contentTypes" optionLabel="name" optionValue="value"
+                        placeholder="Select a Type" [(ngModel)]="contents[$index].type" />
+                    @if (contents[$index].type == 'text') {
+                        <input pInputText id="title" aria-describedby="title-help" class="px-2 py-3" placeholder="Blog.1"
+                            [(ngModel)]="contents[$index].value" />
+                    } @else if (contents[$index].type == 'image') {
+                        <p-fileUpload mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]"
+                            styleClass="bg-blue-600 text-white hover:bg-blue-700"
+                            url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" />
+                    } @else if (contents[$index].type == 'code') {
+                        <textarea rows="5" cols="30" pInputTextarea>
+                        </textarea>
+                    }
+                    <p-button icon="{{ Icons['PLUS'] }}" (onClick)="addContent($index + 1)"
+                        styleClass="bg-blue-600 text-white hover:bg-blue-700 w-[50px] h-[50px] rounded-full" />
+                    <p-button icon="{{ Icons['DELETE'] }}" (onClick)="removeContent($index)"
+                        styleClass="bg-blue-600 text-white hover:bg-blue-700 w-[50px] h-[50px] rounded-full" />
+                </div>
+                }
+                } @else {
+                <p-button icon="{{ Icons['PLUS'] }}" (onClick)="addContent(0)"
+                    styleClass="bg-blue-600 text-white hover:bg-blue-700 w-[50px] h-[50px] rounded-full" />
+                }
+            </div>
+
+        </div>
+    </div>
+    <div class="w-1/2 invisible lg:visible">
+        <h1 class="text-3xl">Preview</h1>
+    </div>
+</div>

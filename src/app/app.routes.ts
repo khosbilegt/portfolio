@@ -3,6 +3,7 @@ import { ProjectComponent } from './project/project.component';
 import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 import { BlogViewComponent } from './blog/blog-view/blog-view.component';
+import { BlogEditorComponent } from './blog/blog-editor/blog-editor.component';
 
 export const routes: Routes = [
   {
@@ -18,8 +19,13 @@ export const routes: Routes = [
     component: BlogViewComponent,
   },
   {
+    path: 'blogs/:title/edit',
+    component: BlogEditorComponent,
+  },
+  {
     path: '**',
-    component: HomeComponent,
+    component: BlogEditorComponent,
+    // component: HomeComponent,
     title: 'Khosbilegt.B - Software Developer',
   },
 ];
